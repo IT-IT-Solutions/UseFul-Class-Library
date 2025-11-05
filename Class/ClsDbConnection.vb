@@ -18,12 +18,12 @@ Public Class ClsDbConnection
     Public Function ConnectDb(ByVal Servers As String, Optional ByVal UserAs As String = "TIS") As SqlConnection
         Dim connectionString As String = ""
 
-        Select Case Servers
+        Select Case Servers.ToUpper()
 
-            Case "172.16.2.29\Uface"
+            Case "172.16.2.29\UFACE"
                 connectionString = "Data Source=" & Servers & ";Initial Catalog=luna;User ID=sa;Password=Uface123"
 
-            Case "172.16.2.44\Security"
+            Case "172.16.2.44\SECURITY"
                 connectionString = "Data Source=" & Servers & ";Initial Catalog=ZKT;User ID=sa;Password=123123"
 
             Case "172.16.2.26\CMS"
@@ -33,7 +33,7 @@ Public Class ClsDbConnection
                     connectionString = "Data Source=" & Servers & ";Initial Catalog=CMSDBNEW;User ID=sa;Password=gtmtis@2370"
                 End If
 
-            Case "172.16.2.26\General"
+            Case "172.16.2.26\GENERAL"
                 If UserAs = "TIS" Then
                     connectionString = "Data Source=" & Servers & ";Initial Catalog=ERPMS_Helper;User ID=TIS;Password=GtM@2024$Secure!"
                 Else
