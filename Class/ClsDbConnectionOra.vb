@@ -82,33 +82,29 @@ Public Class ClsDbConnectionOra
         End Try
     End Sub
 
-    'Public Function BulInsertOra(ByVal dtBulk As DataTable, ByVal TableName As String, ByVal DbConn As OracleConnection) As Boolean
+
+    'Public Function OraBulkInsert(dt As DataTable, tableName As String, conn As OracleConnection) As Boolean
     '    Try
-    '        If DbConn.State <> ConnectionState.Open Then
-    '            DbConn.Open()
-    '        End If
+    '        If conn.State <> ConnectionState.Open Then conn.Open()
 
-    '        Using bulkCopy As New OracleBulkCopy(DbConn)
-    '            bulkCopy.DestinationTableName = TableName
-
-    '            ' Automatically map columns if names match
-    '            For Each column As DataColumn In dtBulk.Columns
-    '                bulkCopy.ColumnMappings.Add(column.ColumnName, column.ColumnName)
+    '        Using bulk As New OracleBulkCopy(conn)
+    '            bulk.DestinationTableName = tableName
+    '            For Each col As DataColumn In dt.Columns
+    '                bulk.ColumnMappings.Add(col.ColumnName, col.ColumnName)
     '            Next
-
-    '            bulkCopy.WriteToServer(dtBulk)
+    '            bulk.WriteToServer(dt)
     '        End Using
 
     '        Return True
+
     '    Catch ex As Exception
-    '        MsgBox("Bulk Insert Error: " & ex.Message, MsgBoxStyle.Critical)
+    '        MsgBox("Bulk Insert Error: " & ex.Message)
     '        Return False
     '    Finally
-    '        If DbConn.State = ConnectionState.Open Then
-    '            DbConn.Close()
-    '        End If
+    '        If conn.State = ConnectionState.Open Then conn.Close()
     '    End Try
     'End Function
+
 
 
     Public Function ExecuteOraQueryReturnTableWithParamAi(ByVal query As String, ByVal dbConn As OracleConnection, ByVal paramNames As String(), ByVal paramValues As String()) As DataTable
@@ -199,7 +195,6 @@ Public Class ClsDbConnectionOra
                     Else
                         Throw New ArgumentNullException("Parameter Array is Null!")
                     End If
-
                     cmd.ExecuteNonQuery()
                 End Using
             Catch ex As Exception
