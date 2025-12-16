@@ -225,33 +225,8 @@ Public Class ClsDbConnection
         End Try
         Return ds.Tables(0)
     End Function
-    Public Function ExecuteQueryReturnTableWithParam(ByVal query As String, ByVal dbConn As SqlConnection, ByVal parameters() As SqlParameter) As DataTable
-        Dim dt As New DataTable()
-        Try
-            Using cmd As New SqlCommand(query, dbConn)
-                cmd.CommandType = CommandType.StoredProcedure
-                cmd.CommandTimeout = 0
 
-                If parameters IsNot Nothing Then
-                    cmd.Parameters.AddRange(parameters)
-                End If
-
-                Using adp As New SqlDataAdapter(cmd)
-                    adp.Fill(dt)
-                End Using
-            End Using
-        Catch ex As Exception
-            MsgBox(ex.Message + "  ExecuteQueryReturnTableWithParam", MsgBoxStyle.Information)
-            ObjUseFulFunctions.LogUnhandledError($"ExecuteQueryReturnTableWithParam: {ex.Message}")
-        Finally
-            If dbConn.State = ConnectionState.Open Then
-                dbConn.Close()
-            End If
-        End Try
-        Return dt
-    End Function
-
-    Public Function ExecuteQueryReturnTableWithParam1(ByVal Query As String, ByVal DbConn As SqlConnection, ByVal Param() As SqlParameter)
+    Public Function ExecuteQueryReturnTableWithParam(ByVal Query As String, ByVal DbConn As SqlConnection, ByVal Param() As SqlParameter) As DataTable
         Dim cmd As SqlCommand = New SqlCommand(Query, DbConn)
         Dim ds As DataSet = New DataSet()
         Try

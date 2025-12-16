@@ -182,6 +182,7 @@ Public Class ClsUstarQuery
         Else
             dt = ObjDbConnection.ExecuteQueryReturnTable(GetRawAttendanceFromUstarLive(DateFrom, DateTo, UnitName), ObjDbConnection.ConnectDb(ObjDbConnection.DbUface))
         End If
+
         Return dt
 
     End Function
