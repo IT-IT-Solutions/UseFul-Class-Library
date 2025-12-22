@@ -22,7 +22,7 @@
         DECLARE @kill varchar(8000) = '';  
         SELECT @kill = @kill + 'kill ' + CONVERT(varchar(5), session_id) + ';'  
         FROM sys.dm_exec_sessions
-        WHERE database_id  = db_id('ERPMS')
+        WHERE database_id  in (Select database_id FROM sys.databases where name not in ('master','tempdb','model','msdb'))
         /*Print @Kill;*/
         EXEC(@kill);")
     End Function
