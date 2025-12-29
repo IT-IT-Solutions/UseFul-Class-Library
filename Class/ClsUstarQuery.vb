@@ -167,6 +167,8 @@ Public Class ClsUstarQuery
 
 
     Public Function GetRawAttendanceDataFromUstar(ByVal EbsCode As String, ByVal UnitName As String, ByVal DateFrom As Date, ByVal DateTo As Date, Optional ByVal Live As Boolean = False) As DataTable
+        On Error Resume Next
+
         Dim DeleteQry As String = String.Format("Delete From TBL_TIS_EBSCode Where UnitName='{0}'", UnitName)
         ObjDbConnection.ExecuteNonQuery(DeleteQry, ObjDbConnection.ConnectDb(ObjDbConnection.DbUface))
         ObjDbConnection.ExecuteNonQuery(DeleteQry, ObjDbConnection.ConnectDb(UnitName))

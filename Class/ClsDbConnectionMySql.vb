@@ -1,7 +1,8 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class ClsDbConnectionMySql
 
-    Public ConMySQL As MySqlConnection = New MySqlConnection("Server=10.2.0.24;Database=gtm_erp;User ID=gtm_mis;Password=Scada@mis2024;SslMode=Preferred;")
+    Public ConMySQL As MySqlConnection = New MySqlConnection("Server=172.16.2.53;Database=gtm_erp;User ID=gtm_mis;Password=Scada@mis2024;SslMode=Preferred;")
+    Public ConMySQLOld As MySqlConnection = New MySqlConnection("Server=10.2.0.24;Database=gtm_erp;User ID=gtm_mis;Password=Scada@mis2024;SslMode=Preferred;")
     Private ObjUseFulFunctions As ClsUseFulFunctions = New ClsUseFulFunctions()
 
     Public Async Function ExecuteMySqlQueryReturnTable(ByVal Query As String, ByVal DbConn As MySqlConnection) As Task(Of DataTable)
