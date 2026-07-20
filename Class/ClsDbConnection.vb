@@ -7,6 +7,7 @@ Public Class ClsDbConnection
 
     Public ConDbSystain As SqlConnection = New SqlConnection("Server=10.2.52.33\SQLEXPRESS;Database=Exchange;User Id=farhan;Password=abc$123;")
     Public ConDbLocal As SqlConnection = New SqlConnection("Data Source=(local);Initial Catalog=ERPMS;User ID=sa;Password=gtmtis@2370;Persist Security Info=True;")
+    Public ConDbUFHRMS As SqlConnection = New SqlConnection("Data Source=10.10.9.4;Initial Catalog=IFS;User ID=sa;Password=Connect2erp;Persist Security Info=True;")
 
     Public DbVisistor As String = "172.16.2.26\Visitor"
     Public DbUface As String = "172.16.2.29\Uface"
