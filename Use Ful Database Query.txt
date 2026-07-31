@@ -7,7 +7,7 @@ declare @backuppath varchar(max)
 declare @command varchar(max)
 set     @backuppath = ('D:\DB Backup\')
 set     @timestamp = (select replace(left(convert(char, getdate(), 120), 10) + '-' + replace(replace(right(getdate(), 8), ' ', ''), ':', '-'), ' ', ''))
-set     @command = ('if (''?'') not in (''master'',''model'',''msdb'',''tempdb'') begin backup database [?] to disk = ''' + @backuppath + '?' + '-' + @timestamp + '.bak'' with INIT,FORMAT,COMPRESSION; end')
+set     @command = ('if (''?'') not in (''master'',''model'',''msdb'',''tempdb'',''IFS'') begin backup database [?] to disk = ''' + @backuppath + '?' + '-' + @timestamp + '.bak'' with INIT,FORMAT,COMPRESSION; end')
 exec    master..sp_msforeachdb @command
 
 --------------------------------------------------------------------------
