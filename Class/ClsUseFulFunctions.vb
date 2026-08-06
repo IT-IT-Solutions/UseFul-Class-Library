@@ -299,7 +299,7 @@ Public Class ClsUseFulFunctions
         End If
 
         Try
-            smtpClient.SendMailAsync(mailMessage)
+            Await smtpClient.SendMailAsync(mailMessage)
             Return "Email sent successfully!"
 
         Catch ex As SmtpException
