@@ -13,12 +13,12 @@ exec    master..sp_msforeachdb @command
 --------------------------------------------------------------------------
 --Database Shrink Query
 --------------------------------------------------------------------------
-Use ERPMS
-ALTER DATABASE ERPMS SET RECOVERY SIMPLE
+Use HRMS_DB
+ALTER DATABASE HRMS_DB SET RECOVERY SIMPLE
 GO
-DBCC SHRINKFILE (ERPMS_Log, 5)
+DBCC SHRINKFILE (HRMS_DB_Log, 5)
 GO
-ALTER DATABASE ERPMS SET RECOVERY FULL
+ALTER DATABASE HRMS_DB SET RECOVERY FULL
 GO
 
 --------------------------------------------------------------------------
