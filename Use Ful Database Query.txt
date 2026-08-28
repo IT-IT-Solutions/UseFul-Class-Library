@@ -232,3 +232,15 @@ EXEC dbo.sp_update_job
     @job_name = N'Backup Plan.Subplan_1',
     @owner_login_name = N'sa';
 GO
+
+---------------------------------------------------------------------------
+# Run as Administrator
+
+# List available time zones
+Get-TimeZone -ListAvailable
+
+# Set a specific time zone
+Set-TimeZone -Id "Pakistan Standard Time"
+
+# Verify the change
+Get-TimeZone
