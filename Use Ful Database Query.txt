@@ -1,3 +1,5 @@
+exec Attendance.dbo.SP_Raw_AttendanceReport '26-Jul-2026', '25-Aug-2026','1000507'
+
 --------------------------------------------------------------------------
 --Database Backup Query
 --------------------------------------------------------------------------
@@ -214,6 +216,21 @@ DBCC CHECKIDENT ('Core.acc.ChartOfAccounts', RESEED, 0);
 
 -- Re-enable foreign key constraints
 ENABLE TRIGGER ALL ON Core.acc.ChartOfAccounts;
+
+----------------------------------------------------------------------------
+
+USE master;
+GO
+ALTER DATABASE [HRMS_DB]
+SET MULTI_USER;
+GO
+
+USE master;
+GO
+ALTER DATABASE [HRMS_DB]
+SET SINGLE_USER
+WITH ROLLBACK IMMEDIATE;
+GO
 
 ----------------------------------------------------------------------------
 
