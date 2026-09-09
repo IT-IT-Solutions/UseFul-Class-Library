@@ -232,6 +232,8 @@ SET SINGLE_USER
 WITH ROLLBACK IMMEDIATE;
 GO
 
+RESTORE DATABASE [HRMS_EF] WITH RECOVERY;
+
 ----------------------------------------------------------------------------
 
 USE msdb;
