@@ -1,4 +1,4 @@
-exec Attendance.dbo.SP_Raw_AttendanceReport '26-Jul-2026', '25-Aug-2026','1000507'
+exec Attendance.dbo.SP_Raw_AttendanceReport '26-Aug-2026', '25-Sep-2026','1000507'
 
 --------------------------------------------------------------------------
 --Database Backup Query
