@@ -253,6 +253,24 @@ EXEC dbo.sp_update_job
 GO
 
 ---------------------------------------------------------------------------
+
+-- Switch to master database first
+USE master;
+GO
+
+-- Set the database to single-user mode with immediate rollback
+ALTER DATABASE HRMS_DB SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+GO
+
+-- Now rename the database
+ALTER DATABASE HRMS_DB MODIFY NAME = HRMS_UF7;
+GO
+
+-- Set back to multi-user mode
+ALTER DATABASE HRMS_UF7 SET MULTI_USER;
+GO
+
+---------------------------------------------------------------------------
 # Run as Administrator
 
 # List available time zones
