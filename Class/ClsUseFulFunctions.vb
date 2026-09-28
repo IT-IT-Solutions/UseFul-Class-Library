@@ -2,6 +2,7 @@
 Imports System.IO
 Imports System.Net
 Imports System.Net.Mail
+Imports System.Net.Mime.MediaTypeNames
 Imports System.Net.NetworkInformation
 Imports System.Net.Sockets
 Imports System.Text
@@ -100,10 +101,12 @@ Public Class ClsUseFulFunctions
             End With
         End If
     End Sub
-    Public Sub SaveLog(ByVal FilePath As String, ByVal FileName As String, ByVal FileData As String, ByVal FileType As String)
+    Public Sub SaveLog(ByVal FileName As String, ByVal FileData As String, ByVal FileType As String)
         On Error Resume Next
+
+        Dim FilePath As String = "C:\TIS-Logs\"
         Dim FileDate As String = Now.ToString("yyyy-MM-dd")
-        Dim FullPath As String = Path.Combine(FilePath, FileDate & " " & FileName)
+        Dim FullPath As String = Path.Combine(FilePath, FileDate & FileName)
 
         If Not Directory.Exists(FilePath) Then
             Directory.CreateDirectory(FilePath + "\" + FileDate)
@@ -117,9 +120,10 @@ Public Class ClsUseFulFunctions
         End Select
     End Sub
 
-    Public Function ReadLog(ByVal FilePath As String, ByVal FileName As String) As String
+    Public Function ReadLog(ByVal FileName As String) As String
         On Error Resume Next
         ReadLog = ""
+        Dim FilePath As String = "C:\TIS-Logs\"
         Dim FileDate As String = Now.ToString("yyyy-MM-dd")
 
         If File.Exists(FilePath + FileName & ".txt") Then
@@ -145,7 +149,7 @@ Public Class ClsUseFulFunctions
                 Directory.CreateDirectory(FilePath + "\" + FileDate)
             End If
 
-            SaveLog(FilePath, FileName, logEntry.ToString(), "txt")
+            SaveLog(FileName, logEntry.ToString(), "txt")
         Next
     End Sub
 
@@ -486,6 +490,22 @@ Public Class ClsUseFulFunctions
 
             Err.Clear()
         End If
+    End Sub
+
+    Public Sub LogAppTxt(logtxt As String)
+        Try
+            Dim FilePath As String = "C:\TIS-Logs\"
+            Dim FileDate As String = Now.ToString("yyyy-MM-dd")
+            Dim FullPath As String = Path.Combine(FilePath, FileDate & " LogAppTxt.txt")
+
+            If Not Directory.Exists(FilePath) Then
+                Directory.CreateDirectory(FilePath)
+            End If
+            File.AppendAllText(FilePath, logtxt & " - " & Now.ToString() & Environment.NewLine)
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Public Sub ExportDatatableToCSVFile(Data As DataTable, FileName As String, FilePath As String)
